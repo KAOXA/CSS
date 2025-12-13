@@ -633,7 +633,7 @@ body.waifuMode #top-bar {
 
 .mes_text {
   padding: calc(var(--mainFontSize) * 0.8) 0 0 0;
-  line-height: 1.6; /* 调整此值来改变行间距，1.6表示行高为字体大小的1.6倍 */
+  line-height: 4 !important; /* 调整此值来改变行间距，1.5表示行高为字体大小的1.5倍 */
 }
 
 .mes_block {
@@ -1489,7 +1489,7 @@ details.mes_reasoning_details .mes_reasoning_summary {
 
 /* 第一行段行间距，第二行缩进字符数 */
 .mes_text p {
-  margin-bottom: 11px;
+  margin-bottom: 10px;
   text-indent: 2em;
 }
 
