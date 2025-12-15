@@ -258,6 +258,18 @@ textarea[type='search'] {
   background-color: var(--ui-color-sec);
   border-color: var(--ui-color-sec);
   color: var(--text-color-main);
+  /* [优化] 增加过渡 */
+  transition: background-color var(--anim-duration-fast) var(--anim-ease-out),
+    transform 0.1s var(--anim-ease-out);
+}
+
+.menu_button:not(.mes_edit_buttons *):active {
+  transform: scale(0.95);
+}
+
+/* [优化] 按钮悬停反馈 */
+.menu_button:not(.mes_edit_buttons *):hover {
+  background-color: color-mix(in srgb, var(--ui-color-sec) 80%, var(--theme-color-1)) !important;
 }
 
 .menu_button_icon i {
