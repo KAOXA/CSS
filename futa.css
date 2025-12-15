@@ -69,6 +69,14 @@
   --spacing-short: 5px;
   --topBarIconSize: calc(var(--icon-size) * 2);
 
+  /* ============ 动画变量 ============ */
+  --anim-duration-fast: 0.2s;
+  --anim-duration-normal: 0.3s;
+  --anim-duration-slow: 0.5s;
+  --anim-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --anim-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --anim-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
   /* ============ 可配置的图标大小设置 ============ */
   /* 侧边栏抽屉图标大小 */
   --drawer-icon-size: 22px; /* 调整此值来改变侧边栏抽屉的箭头图标大小 */
@@ -215,6 +223,8 @@
   background-color: color-mix(in srgb, var(--theme-color-1) 70%, transparent);
   box-shadow: none;
   border: 0;
+  /* [优化] 增加过渡 */
+  transition: background-color var(--anim-duration-fast);
 }
 
 /* ---输入框--- */
@@ -225,6 +235,10 @@ input:not([type]),
 textarea:not([type='search']) {
   background-color: var(--ui-color-sec) !important;
   border: 1px solid var(--ui-color-sec) !important;
+  /* [优化] 增加过渡 */
+  transition: border-color var(--anim-duration-fast) var(--anim-ease-out),
+    box-shadow var(--anim-duration-fast) var(--anim-ease-out),
+    background-color var(--anim-duration-fast) var(--anim-ease-out);
 }
 
 input[type='text']:focus,
@@ -233,6 +247,8 @@ input[type='switch']:focus,
 input:not([type]):focus,
 textarea:not([type='search']):focus {
   border: 1px solid var(--theme-color-1) !important;
+  /* [优化] 增加聚焦光晕 */
+  box-shadow: 0 0 5px color-mix(in srgb, var(--theme-color-1) 30%, transparent) !important;
 }
 
 textarea[type='search'] {
@@ -445,6 +461,12 @@ input[type='range']::-webkit-slider-thumb {
 body.big-avatars .avatar img {
   box-shadow: none;
   border: none;
+  /* [优化] 头像悬停微动 */
+  transition: transform var(--anim-duration-fast) ease;
+}
+
+.avatar img:hover {
+  transform: scale(1.02);
 }
 
 /* ---代码块--- */
@@ -546,14 +568,17 @@ body.waifuMode #top-bar {
   opacity: 0.3;
   font-size: calc(var(--icon-size) * 1.1);
   text-shadow: none !important;
+  transition: opacity var(--anim-duration-fast), transform var(--anim-duration-fast);
 }
 
-.drawer-icon:focus {
+.drawer-icon:focus,
+.drawer-icon:hover {
   opacity: 1;
   background: var(--gradient-main);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  transform: scale(1.1);
 }
 
 .drawer-content {
@@ -1163,3 +1188,22 @@ body.no-blur #send_form,
 }
 
 /* ============ 图标大小控制样式结束 ============ */
+
+/* ============ 动画关键帧 ============ */
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mes {
+  animation: fade-in-up 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  will-change: transform, opacity;
+}
