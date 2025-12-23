@@ -1547,3 +1547,8 @@ details.mes_reasoning_details .mes_reasoning_summary {
 }
 
 /* ============ 图标大小控制样式结束 ============ */
+
+/* 角色卡三条杠 */
+#rm_button_characters {
+  font-size: calc(var(--mainFontSize) * 2.0)!important;
+}
