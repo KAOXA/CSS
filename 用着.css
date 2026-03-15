@@ -1552,3 +1552,25 @@ details.mes_reasoning_details .mes_reasoning_summary {
 #rm_button_characters {
   font-size: calc(var(--mainFontSize) * 2.0)!important;
 }
+
+
+
+/* ============ 隐藏反代警告等各种无用元素 ============ */
+
+
+/* Reverse proxy warning */
+#ReverseProxyWarningMessage,
+#ReverseProxyWarningMessage2,
+
+/* CC invalid settings notice */
+#advanced-formatting-cc-notice,
+
+/* CC invalid settings */
+[data-cc-null],
+
+/* Deprecated extra api settings */
+#extensions_settings2 + hr,
+#extensions_settings2 + hr + div,
+#extensions_settings2 + hr + div + div {
+  display: none !important;
+}
